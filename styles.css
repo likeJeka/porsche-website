@@ -172,6 +172,10 @@ ul {
 }
 .footer-content a {
   color: var(--accent);
+  font-style: normal;
+}
+.address-span {
+  font-style: normal;
 }
 
 .footer-content svg {
