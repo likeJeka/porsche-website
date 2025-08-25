@@ -1,71 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta
       name="description"
       content="Dream Porsche models — Porsche 911, Macan. Style, speed, safety. Your dream starts here."
     />
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My way to Porsche</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google Fonts (one request) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600&family=Orbitron:wght@500&display=swap"
       rel="stylesheet"
     />
   </head>
+
   <body>
     <div class="wrapper">
       <!-- Header -->
       <header class="site-header">
         <h1 class="logo-text"><a href="/">Porsche</a></h1>
         <nav class="header-nav">
-          <ul class="navigation barlow-text">
+          <ul class="navigation">
             <li><a href="#dream-cars">Dream cars</a></li>
             <li><a href="#contact">Contacts</a></li>
           </ul>
+          <button id="openModal" class="btn header-btn" type="button">Request a call</button>
         </nav>
       </header>
 
+      <!-- Modal -->
+      <div id="modal" class="modal hidden">
+        <div class="overlay" data-close></div>
+
+        <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <h2 id="modal-title">Leave a request</h2>
+
+          <form class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">First name</label>
+              <input id="name" name="name" type="text" required placeholder="Enter your first name" />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                placeholder="+380(___) ___-____"
+                pattern="\+?[0-9\s\-()]{7,15}"
+                inputmode="tel"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email (optional)</label>
+              <input id="email" name="email" type="email" placeholder="example@mail.com" />
+            </div>
+
+            <div class="form-check">
+              <input id="consent" name="consent" type="checkbox" required />
+              <label for="consent">I agree to the processing of my personal data</label>
+            </div>
+
+            <button class="btn submit-btn" type="submit">Send</button>
+          </form>
+
+          <p id="successMessage" class="success hidden">✅ Your request has been sent!</p>
+          <button id="closeModal" class="btn close-btn" type="button">Close</button>
+        </div>
+      </div>
+
       <!-- Hero -->
       <section class="image-container">
-        <img src="./pictures/porsche-3.avif" alt="Porsche Logo" />
+        <img src="./pictures/porsche-3.avif" alt="Porsche 911 in front of modern house" />
         <div class="hero-overlay-text">
           <h2>Drive your dream</h2>
-          <p>Porsche 911 та Macan — обери авто мрії вже сьогодні.</p>
+          <p>Porsche 911 and Macan — choose your dream car today.</p>
         </div>
       </section>
 
-      <!-- Section 3 -->
+      <!-- Models -->
       <section id="dream-cars">
         <h2 class="section-title">Our Models</h2>
+
         <div class="models-grid">
           <div class="model-card">
-            <img src="./pictures/porsche-4.jpg" alt="Porsche 911" />
+            <div class="image-wrapper">
+              <img src="./pictures/porsche-4.jpg" alt="Porsche 911" />
+              <div class="card-overlay">
+                <p>Porsche 911 Turbo S</p>
+                <p>0–100 km/h: 2.7 s</p>
+                <p>Top speed: 330 km/h</p>
+                <p>Power: 650 hp</p>
+                <p>Engine: 3.8L twin-turbo</p>
+              </div>
+            </div>
             <h3>Porsche 911</h3>
-            <p>Ціна: від $120 000</p>
+            <p>Price: from $120,000</p>
             <a
-              href="https://www.porsche.com/central-eastern-europe/ru/models/911/911-gt3-models/911-gt3/"
+              href="https://dealer.porsche.com/ua/kyivairport/uk-UA/Model-Pages/911-GT3"
               target="_blank"
+              rel="noopener"
               class="btn"
-              >Детальніше</a
+              >Learn more</a
             >
           </div>
+
           <div class="model-card">
-            <img src="./pictures/porsche-5.jpg" alt="Porsche Macan" />
+            <div class="image-wrapper">
+              <img src="./pictures/porsche-5.jpg" alt="Porsche Macan Electric" />
+              <div class="card-overlay">
+                <p>Porsche Macan Electric</p>
+                <p>0–100 km/h: 5.2 s</p>
+                <p>Top speed: 220 km/h</p>
+                <p>Power: 408 hp</p>
+                <p>Range: up to 613 km</p>
+              </div>
+            </div>
             <h3>Porsche Macan</h3>
-            <p>Ціна: від $80 000</p>
+            <p>Price: from $80,000</p>
             <a
-              href="https://www.porsche.com/central-eastern-europe/ru/models/macan/macan-electric-models/macan-electric/"
+              href="https://dealer.porsche.com/ua/kyivairport/uk-UA/Model-Pages/Macan-Electric"
               target="_blank"
+              rel="noopener"
               class="btn"
-              >Детальніше</a
+              >Learn more</a
             >
           </div>
         </div>
@@ -75,27 +143,26 @@
       <footer class="site-footer" id="contact">
         <address class="footer-content">
           <div class="contact-item">
-            <svg class="icon">
-              <use href="./pictures/icons/sprite.svg#icon-phone"></use>
-            </svg>
-            <span class="address-span">Телефон:</span>
+            <svg class="icon"><use href="./pictures/icons/sprite.svg#icon-phone"></use></svg>
+            <span class="address-span">Phone:</span>
             <a href="tel:+380442019110">+380442019110</a>
           </div>
+
           <div class="contact-item">
-            <svg class="icon">
-              <use href="./pictures/icons/sprite.svg#icon-envelop"></use>
-            </svg>
+            <svg class="icon"><use href="./pictures/icons/sprite.svg#icon-envelop"></use></svg>
             <span class="address-span">Email:</span>
             <a
-              href="https://mail.google.com/mail/?view=cm&to=pcka-reception@winner.ua"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=pcka-reception@winner.ua"
               target="_blank"
-            >
-              pcka-reception@winner.ua
-            </a>
+              rel="noopener"
+            >pcka-reception@winner.ua</a>
           </div>
-          <p>© 2025 Мій шлях до Porsche</p>
+
+          <p>© 2025 My way to Porsche</p>
         </address>
       </footer>
     </div>
+
+    <script src="modal.js" defer></script>
   </body>
 </html>
