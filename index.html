@@ -26,12 +26,14 @@
       <!-- Header -->
       <header class="site-header">
         <h1 class="logo-text"><a href="/">Porsche</a></h1>
-        <nav class="header-nav">
+        <nav class="header-nav" aria-label="Primary">
           <ul class="navigation">
             <li><a href="#dream-cars">Dream cars</a></li>
             <li><a href="#contact">Contacts</a></li>
           </ul>
-          <button id="openModal" class="btn header-btn" type="button">Request a call</button>
+          <button id="openModal" class="btn header-btn" type="button">
+            Request a call
+          </button>
         </nav>
       </header>
 
@@ -39,13 +41,25 @@
       <div id="modal" class="modal hidden">
         <div class="overlay" data-close></div>
 
-        <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div
+          class="modal-window"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+          tabindex="-1"
+        >
           <h2 id="modal-title">Leave a request</h2>
 
           <form class="contact-form" novalidate>
             <div class="form-group">
               <label for="name">First name</label>
-              <input id="name" name="name" type="text" required placeholder="Enter your first name" />
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="Enter your first name"
+              />
             </div>
 
             <div class="form-group">
@@ -63,25 +77,44 @@
 
             <div class="form-group">
               <label for="email">Email (optional)</label>
-              <input id="email" name="email" type="email" placeholder="example@mail.com" />
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="example@mail.com"
+              />
             </div>
 
             <div class="form-check">
               <input id="consent" name="consent" type="checkbox" required />
-              <label for="consent">I agree to the processing of my personal data</label>
+              <label for="consent"
+                >I agree to the processing of my personal data</label
+              >
             </div>
 
             <button class="btn submit-btn" type="submit">Send</button>
           </form>
 
-          <p id="successMessage" class="success hidden">✅ Your request has been sent!</p>
-          <button id="closeModal" class="btn close-btn" type="button">Close</button>
+          <p
+            id="successMessage"
+            class="success hidden"
+            role="status"
+            aria-live="polite"
+          >
+            ✅ Your request has been sent!
+          </p>
+          <button id="closeModal" class="btn close-btn" type="button">
+            Close
+          </button>
         </div>
       </div>
 
       <!-- Hero -->
       <section class="image-container">
-        <img src="./pictures/porsche-3.avif" alt="Porsche 911 in front of modern house" />
+        <img
+          src="./pictures/porsche-3.avif"
+          alt="Porsche 911 in front of modern house"
+        />
         <div class="hero-overlay-text">
           <h2>Drive your dream</h2>
           <p>Porsche 911 and Macan — choose your dream car today.</p>
@@ -89,73 +122,165 @@
       </section>
 
       <!-- Models -->
-      <section id="dream-cars">
-        <h2 class="section-title">Our Models</h2>
+      <section id="dream-cars" aria-labelledby="models-title">
+        <h2 class="section-title" id="models-title">Our Models</h2>
 
-        <div class="models-grid">
-          <div class="model-card">
-            <div class="image-wrapper">
-              <img src="./pictures/porsche-4.jpg" alt="Porsche 911" />
-              <div class="card-overlay">
-                <p>Porsche 911 Turbo S</p>
-                <p>0–100 km/h: 2.7 s</p>
-                <p>Top speed: 330 km/h</p>
-                <p>Power: 650 hp</p>
-                <p>Engine: 3.8L twin-turbo</p>
+        <div class="models-row-wrap">
+          <button
+            class="row-arrow prev"
+            aria-label="Scroll left"
+            aria-controls="models-carousel"
+            type="button"
+            disabled
+          >
+            ‹
+          </button>
+
+          <div
+            class="models-row"
+            id="models-carousel"
+            role="region"
+            aria-label="Porsche models carousel"
+          >
+            <!-- Card 1 -->
+            <div class="model-card">
+              <div class="image-wrapper">
+                <img
+                  src="./pictures/porsche-4.jpg"
+                  alt="Porsche 911"
+                  loading="lazy"
+                />
+                <div class="card-overlay">
+                  <p>Porsche 911 Turbo S</p>
+                  <p>0–100 km/h: 2.7 s</p>
+                  <p>Top speed: 330 km/h</p>
+                  <p>Power: 650 hp</p>
+                  <p>Engine: 3.8L twin-turbo</p>
+                </div>
               </div>
+              <h3>Porsche 911</h3>
+              <p>Price: from $120,000</p>
+              <a
+                href="https://dealer.porsche.com/ua/kyivairport/uk-UA/Model-Pages/911-GT3"
+                target="_blank"
+                rel="noopener"
+                class="btn"
+                >Learn more</a
+              >
             </div>
-            <h3>Porsche 911</h3>
-            <p>Price: from $120,000</p>
-            <a
-              href="https://dealer.porsche.com/ua/kyivairport/uk-UA/Model-Pages/911-GT3"
-              target="_blank"
-              rel="noopener"
-              class="btn"
-              >Learn more</a
-            >
+
+            <!-- Card 2 -->
+            <div class="model-card">
+              <div class="image-wrapper">
+                <img
+                  src="./pictures/porsche-5.jpg"
+                  alt="Porsche Macan Electric"
+                  loading="lazy"
+                />
+                <div class="card-overlay">
+                  <p>Porsche Macan Electric</p>
+                  <p>0–100 km/h: 5.2 s</p>
+                  <p>Top speed: 220 km/h</p>
+                  <p>Power: 408 hp</p>
+                  <p>Range: up to 613 km</p>
+                </div>
+              </div>
+              <h3>Porsche Macan</h3>
+              <p>Price: from $80,000</p>
+              <a
+                href="https://dealer.porsche.com/ua/kyivairport/uk-UA/Model-Pages/Macan-Electric"
+                target="_blank"
+                rel="noopener"
+                class="btn"
+                >Learn more</a
+              >
+            </div>
+
+            <!-- Card 3 -->
+            <div class="model-card">
+              <div class="image-wrapper">
+                <img
+                  src="./pictures/porsche-6.jpg"
+                  alt="Porsche Taycan"
+                  loading="lazy"
+                />
+                <div class="card-overlay">
+                  <p>Porsche Taycan 4S</p>
+                  <p>0–100 km/h: 4.0 s</p>
+                  <p>Top speed: 250 km/h</p>
+                  <p>Power: 530 hp</p>
+                  <p>Range: up to 500 km</p>
+                </div>
+              </div>
+              <h3>Porsche Taycan</h3>
+              <p>Price: from $95,000</p>
+              <a
+                href="https://dealer.porsche.com/ua/kyivairport/uk-UA/Model-Pages/Taycan"
+                target="_blank"
+                rel="noopener"
+                class="btn"
+                >Learn more</a
+              >
+            </div>
+
+            <!-- Card 4 -->
+            <div class="model-card">
+              <div class="image-wrapper">
+                <img
+                  src="./pictures/porsche-7.jpg"
+                  alt="Porsche Cayenne"
+                  loading="lazy"
+                />
+                <div class="card-overlay">
+                  <p>Porsche Cayenne</p>
+                  <p>0–100 km/h: 5.9 s</p>
+                  <p>Top speed: 245 km/h</p>
+                  <p>Power: 353 hp</p>
+                  <p>Engine: V6 Turbo</p>
+                </div>
+              </div>
+              <h3>Porsche Cayenne</h3>
+              <p>Price: from $85,000</p>
+              <a
+                href="https://dealer.porsche.com/ua/kyivairport/uk-UA/Model-Pages/Porsche-Cayenne"
+                target="_blank"
+                rel="noopener"
+                class="btn"
+                >Learn more</a
+              >
+            </div>
           </div>
 
-          <div class="model-card">
-            <div class="image-wrapper">
-              <img src="./pictures/porsche-5.jpg" alt="Porsche Macan Electric" />
-              <div class="card-overlay">
-                <p>Porsche Macan Electric</p>
-                <p>0–100 km/h: 5.2 s</p>
-                <p>Top speed: 220 km/h</p>
-                <p>Power: 408 hp</p>
-                <p>Range: up to 613 km</p>
-              </div>
-            </div>
-            <h3>Porsche Macan</h3>
-            <p>Price: from $80,000</p>
-            <a
-              href="https://dealer.porsche.com/ua/kyivairport/uk-UA/Model-Pages/Macan-Electric"
-              target="_blank"
-              rel="noopener"
-              class="btn"
-              >Learn more</a
-            >
-          </div>
+          <button
+            class="row-arrow next"
+            aria-label="Scroll right"
+            aria-controls="models-carousel"
+            type="button"
+          >
+            ›
+          </button>
         </div>
       </section>
 
       <!-- Footer -->
       <footer class="site-footer" id="contact">
-        <address class="footer-content">
+        <address class="footer-content" aria-label="Contacts">
           <div class="contact-item">
-            <svg class="icon"><use href="./pictures/icons/sprite.svg#icon-phone"></use></svg>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="./pictures/icons/sprite.svg#icon-phone"></use>
+            </svg>
             <span class="address-span">Phone:</span>
             <a href="tel:+380442019110">+380442019110</a>
           </div>
 
           <div class="contact-item">
-            <svg class="icon"><use href="./pictures/icons/sprite.svg#icon-envelop"></use></svg>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="./pictures/icons/sprite.svg#icon-envelop"></use>
+            </svg>
             <span class="address-span">Email:</span>
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=pcka-reception@winner.ua"
-              target="_blank"
-              rel="noopener"
-            >pcka-reception@winner.ua</a>
+            <a href="mailto:pcka-reception@winner.ua"
+              >pcka-reception@winner.ua</a
+            >
           </div>
 
           <p>© 2025 My way to Porsche</p>
@@ -163,6 +288,8 @@
       </footer>
     </div>
 
+    <!-- JS -->
     <script src="modal.js" defer></script>
+    <script src="carousel.js" defer></script>
   </body>
 </html>
