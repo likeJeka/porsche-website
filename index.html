@@ -28,10 +28,26 @@
         <h1 class="logo-text"><a href="/">Porsche</a></h1>
         <nav class="header-nav" aria-label="Primary">
           <ul class="navigation">
+            <li><a href="#about">About</a></li>
             <li><a href="#dream-cars">Dream cars</a></li>
             <li><a href="#contact">Contacts</a></li>
           </ul>
-          <button id="openModal" class="btn header-btn" type="button">
+          <button
+            id="themeToggle"
+            class="btn theme-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Switch to dark theme"
+            title="Toggle theme"
+          >
+            🌙
+          </button>
+          <button
+            id="openModal"
+            class="btn header-btn"
+            type="button"
+            aria-haspopup="dialog"
+          >
             Request a call
           </button>
         </nav>
@@ -110,7 +126,7 @@
       </div>
 
       <!-- Hero -->
-      <section class="image-container">
+      <section class="image-container" aria-label="Hero">
         <img
           src="./pictures/porsche-3.avif"
           alt="Porsche 911 in front of modern house"
@@ -119,6 +135,27 @@
           <h2>Drive your dream</h2>
           <p>Porsche 911 and Macan — choose your dream car today.</p>
         </div>
+      </section>
+
+      <!-- About Porsche -->
+      <section id="about" class="about" aria-labelledby="about-title">
+        <h2 id="about-title">About Porsche</h2>
+        <p>
+          Founded in 1931 by Ferdinand Porsche in Stuttgart, Porsche has stood
+          for innovation, precision and timeless design from day one. What began
+          as an engineering office became one of the most iconic sports car
+          brands.
+        </p>
+        <p>
+          The Porsche philosophy is to blend performance with everyday
+          usability. From the legendary 911 to modern electric models like the
+          Macan and Taycan, every Porsche is engineered to deliver pure driving
+          emotion.
+        </p>
+        <p>
+          More than cars, Porsche represents dreams realized through engineering
+          excellence and a relentless pursuit of perfection.
+        </p>
       </section>
 
       <!-- Models -->
@@ -282,14 +319,22 @@
               >pcka-reception@winner.ua</a
             >
           </div>
-
-          <p>© 2025 My way to Porsche</p>
         </address>
+        <p>© 2025 My way to Porsche</p>
       </footer>
     </div>
+
+    <!-- Scroll-to-top -->
+    <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="./pictures/icons/sprite.svg#icon-arrow-up-solid24"></use>
+      </svg>
+    </button>
 
     <!-- JS -->
     <script src="modal.js" defer></script>
     <script src="carousel.js" defer></script>
+    <script src="theme.js" defer></script>
+    <script src="scroll-top.js" defer></script>
   </body>
 </html>
