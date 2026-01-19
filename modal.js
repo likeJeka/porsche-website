@@ -22,7 +22,7 @@
     if (e.key !== "Tab" || !isOpen()) return;
 
     const focusables = modal.querySelectorAll(
-      'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+      'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])',
     );
     if (!focusables.length) return;
 
@@ -46,7 +46,7 @@
 
     // Ставим фокус внутрь окна (на первое поле формы, если есть)
     const firstInput = modal.querySelector(
-      "input, button, [tabindex]:not([tabindex='-1'])"
+      "input, button, [tabindex]:not([tabindex='-1'])",
     );
     (firstInput || dialog)?.focus();
 
@@ -84,19 +84,38 @@
   }
 
   // Отправка формы (демо)
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (!form.checkValidity?.()) {
-        form.reportValidity?.();
-        return;
-      }
-      successMsg?.classList.remove("hidden");
-      form.reset();
-      setTimeout(() => {
-        close();
-        successMsg?.classList.add("hidden");
-      }, 3000);
-    });
-  }
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(form);
+
+    const data = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      consent: formData.get("consent"),
+    };
+
+    console.log(data);
+    fetch(
+      "https://script.google.com/macros/s/AKfycbyrPKzMT3xifHkFMipG6_BXwP9ja-2_F8rWRTLXSW4O42L_A-gcWshFRlSgJpN5IK4/exec",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      },
+    );
+
+    successMsg.classList.remove("hidden");
+    form.reset();
+
+    setTimeout(() => {
+      close();
+      successMsg.classList.add("hidden");
+    }, 3000);
+  });
 })();
