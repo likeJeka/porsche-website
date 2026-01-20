@@ -484,7 +484,9 @@ ul {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   z-index: 2;
-  transition: transform 0.2s, opacity 0.2s;
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
 }
 .row-arrow.prev {
   left: 8px;
@@ -597,7 +599,9 @@ body {
 
 /* Плавные переходы цветов */
 * {
-  transition: background-color 0.25s ease, color 0.25s ease,
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
     border-color 0.25s ease;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -623,7 +627,10 @@ body {
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease,
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.2s ease,
     background 0.3s;
   z-index: 9999;
 }
@@ -652,4 +659,85 @@ body {
 /* Для тёмной темы меняем картинку */
 html[data-theme="dark"] .image-container img {
   content: url("./pictures/porsche-1.jpg");
+}
+
+/* Burger button */
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: right 0.3s ease;
+  z-index: 2000;
+  background: var(--card-bg);
+  color: var(--text);
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.close-menu {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+}
+
+.mobile-menu a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-menu a:hover {
+  color: var(--accent);
+}
+/* Icon buttons (burger + close) */
+.burger,
+.close-menu {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .burger,
+html[data-theme="dark"] .close-menu {
+  color: #fff;
+}
+
+.mobile-theme-toggle {
+  margin-top: auto; /* уезжает вниз */
+  align-self: stretch;
+  text-align: center;
 }

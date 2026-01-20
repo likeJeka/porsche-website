@@ -1,7 +1,9 @@
 (() => {
   const KEY = "theme"; // 'light' | 'dark'
   const root = document.documentElement;
-  const btn = document.getElementById("themeToggle");
+  const buttons = document.querySelectorAll(".theme-toggle");
+
+  if (!buttons.length) return;
 
   // Определяем стартовую тему: localStorage > системная > light
   const stored = localStorage.getItem(KEY);
@@ -12,7 +14,8 @@
 
   const apply = (mode) => {
     root.setAttribute("data-theme", mode === "dark" ? "dark" : "light");
-    if (btn) {
+
+    buttons.forEach((btn) => {
       const isDark = mode === "dark";
       btn.setAttribute("aria-pressed", String(isDark));
       btn.setAttribute(
@@ -21,23 +24,27 @@
       );
       btn.title = "Toggle theme";
       btn.textContent = isDark ? "☀️" : "🌙";
-    }
+    });
   };
 
   apply(initial);
 
-  // Реакция на системное переключение (если пользователь не зафиксировал вручную)
+  // Реакция на смену системной темы (если пользователь не зафиксировал выбор)
   if (!stored && window.matchMedia) {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    mq.addEventListener?.("change", (e) => apply(e.matches ? "dark" : "light"));
+    mq.addEventListener?.("change", (e) =>
+      apply(e.matches ? "dark" : "light")
+    );
   }
 
-  // Клик по кнопке — фиксируем выбор
-  btn?.addEventListener("click", () => {
-    const current =
-      root.getAttribute("data-theme") === "dark" ? "dark" : "light";
-    const next = current === "dark" ? "light" : "dark";
-    localStorage.setItem(KEY, next);
-    apply(next);
+  // Клик по любой кнопке темы
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const current =
+        root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      const next = current === "dark" ? "light" : "dark";
+      localStorage.setItem(KEY, next);
+      apply(next);
+    });
   });
 })();

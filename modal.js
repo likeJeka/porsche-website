@@ -1,14 +1,17 @@
 // modal.js
 (() => {
   const modal = document.getElementById("modal");
-  const openBtn = document.getElementById("openModal");
   const closeBtn = document.getElementById("closeModal");
   const form = document.querySelector(".contact-form");
   const successMsg = document.getElementById("successMessage");
   const phoneInput = document.getElementById("phone");
   const dialog = modal?.querySelector(".modal-window");
 
-  if (!modal || !openBtn || !closeBtn) return;
+  // КНОПКИ ОТКРЫТИЯ (БЕЗ ИЗМЕНЕНИЯ HTML)
+  const headerOpenBtn = document.getElementById("openModal");
+  const mobileOpenBtn = document.querySelector(".mobile-call-btn");
+
+  if (!modal || !closeBtn) return;
 
   let lastFocus = null;
 
@@ -17,12 +20,12 @@
     document.documentElement.style.overflow = on ? "hidden" : "";
   };
 
-  // Focus trap: удерживаем табуляцию внутри модалки
+  // Focus trap
   const trapFocus = (e) => {
     if (e.key !== "Tab" || !isOpen()) return;
 
     const focusables = modal.querySelectorAll(
-      'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])',
+      'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
     );
     if (!focusables.length) return;
 
@@ -44,9 +47,8 @@
     modal.setAttribute("aria-hidden", "false");
     lockScroll(true);
 
-    // Ставим фокус внутрь окна (на первое поле формы, если есть)
     const firstInput = modal.querySelector(
-      "input, button, [tabindex]:not([tabindex='-1'])",
+      "input, button, [tabindex]:not([tabindex='-1'])"
     );
     (firstInput || dialog)?.focus();
 
@@ -62,60 +64,85 @@
     lastFocus && lastFocus.focus();
   };
 
-  // Открыть/закрыть по кнопкам
-  openBtn.addEventListener("click", open);
+  // === ОТКРЫТИЕ ИЗ ХЕДЕРА ===
+  if (headerOpenBtn) {
+    headerOpenBtn.addEventListener("click", open);
+  }
+
+  // === ОТКРЫТИЕ ИЗ МОБИЛЬНОГО МЕНЮ ===
+  if (mobileOpenBtn) {
+    mobileOpenBtn.addEventListener("click", () => {
+      open();
+      document.querySelector(".mobile-menu")?.classList.remove("active");
+    });
+  }
+
+  // Закрытие
   closeBtn.addEventListener("click", close);
 
-  // Закрыть по клику на затемнённый фон
   modal.addEventListener("click", (e) => {
     if (e.target.classList.contains("overlay")) close();
   });
 
-  // Закрыть по ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && isOpen()) close();
   });
 
-  // Живой фильтр для телефона
+  // Фильтр телефона
   if (phoneInput) {
     phoneInput.addEventListener("input", () => {
       phoneInput.value = phoneInput.value.replace(/[^0-9+\-()\s]/g, "");
     });
   }
 
-  // Отправка формы (демо)
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+  // Отправка формы
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
 
-    const formData = new FormData(form);
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get("name"),
+        phone: formData.get("phone"),
+        email: formData.get("email"),
+        consent: formData.get("consent"),
+      };
 
-    const data = {
-      name: formData.get("name"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      consent: formData.get("consent"),
-    };
+      fetch(
+        "https://script.google.com/macros/s/AKfycbyrPKzMT3xifHkFMipG6_BXwP9ja-2_F8rWRTLXSW4O42L_A-gcWshFRlSgJpN5IK4/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
 
-    console.log(data);
-    fetch(
-      "https://script.google.com/macros/s/AKfycbyrPKzMT3xifHkFMipG6_BXwP9ja-2_F8rWRTLXSW4O42L_A-gcWshFRlSgJpN5IK4/exec",
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-      },
-    );
+      successMsg.classList.remove("hidden");
+      form.reset();
 
-    successMsg.classList.remove("hidden");
-    form.reset();
+      setTimeout(() => {
+        close();
+        successMsg.classList.add("hidden");
+      }, 3000);
+    });
+  }
+    // ===== Mobile menu =====
+  const burger = document.querySelector(".burger");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  const closeMenu = document.querySelector(".close-menu");
 
-    setTimeout(() => {
-      close();
-      successMsg.classList.add("hidden");
-    }, 3000);
-  });
+  if (burger && mobileMenu && closeMenu) {
+    burger.addEventListener("click", () => {
+      mobileMenu.classList.add("active");
+    });
+
+    closeMenu.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+    });
+  }
+
 })();

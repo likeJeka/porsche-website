@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -51,7 +51,28 @@
             Request a call
           </button>
         </nav>
+        <button class="burger" aria-label="Open menu">☰</button>
       </header>
+
+      <!-- Mobile menu -->
+
+      <nav class="mobile-menu">
+        <button class="close-menu">✕</button>
+        <a href="#about">About</a>
+        <a href="#dream-cars">Dream cars</a>
+        <a href="#contact">Contacts</a>
+        <button
+          class="btn mobile-call-btn"
+          type="button"
+          aria-haspopup="dialog"
+        >
+          Request a call
+        </button>
+
+        <button class="btn theme-toggle mobile-theme-toggle" type="button">
+          🌙 Toggle theme
+        </button>
+      </nav>
 
       <!-- Modal -->
       <div id="modal" class="modal hidden">
