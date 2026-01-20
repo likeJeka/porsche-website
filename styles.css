@@ -84,7 +84,7 @@ ul {
   text-transform: uppercase;
 }
 .header-nav {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
@@ -663,7 +663,7 @@ html[data-theme="dark"] .image-container img {
 
 /* Burger button */
 .burger {
-  display: none;
+  display: block;
   background: none;
   border: none;
   font-size: 24px;
@@ -740,4 +740,13 @@ html[data-theme="dark"] .close-menu {
   margin-top: auto; /* уезжает вниз */
   align-self: stretch;
   text-align: center;
+}
+@media (min-width: 769px) {
+  .header-nav {
+    display: flex;
+  }
+
+  .burger {
+    display: none;
+  }
 }
