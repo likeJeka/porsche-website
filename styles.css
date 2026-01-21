@@ -816,3 +816,20 @@ html[data-theme="dark"] .close-menu {
   color: #fff;
   cursor: pointer;
 }
+/* Mobile: скрываем длинный текст */
+@media (max-width: 767px) {
+  .hero-subtext {
+    display: none;
+  }
+
+  .hero-overlay-text h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Tablet+ — всё как было */
+@media (min-width: 768px) {
+  .hero-subtext {
+    display: block;
+  }
+}
