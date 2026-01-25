@@ -26,9 +26,11 @@ body {
   line-height: 1.6;
 }
 .wrapper {
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
 }
+
 a {
   color: inherit;
   text-decoration: none;
@@ -364,74 +366,61 @@ ul {
   text-align: center;
 }
 
-/* ===== Tablet (≥768px) ===== */
-@media (min-width: 768px) {
-  .wrapper {
-    max-width: 760px;
-  }
-  .site-header {
-    padding: 1rem 2rem;
-    gap: 1rem;
-  }
-  .logo-text {
-    font-size: 1.5rem;
-  }
-  .header-nav {
-    gap: 1.25rem;
-  }
-
-  .hero-overlay-text {
-    left: 2rem;
-    bottom: 2rem;
-  }
-  .hero-overlay-text h2 {
-    font-size: 2rem;
-  }
-  .hero-overlay-text p {
-    font-size: 1.1rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-    margin: 2.5rem 0 1.25rem;
-  }
-
-  .models-grid {
-    grid-template-columns: repeat(2, minmax(320px, 1fr));
-    gap: 2rem;
-    padding: 0 2rem 3rem;
-  }
-  .model-card {
-    padding: 1.25rem;
-  }
+.site-header {
+  padding: 1rem 2rem;
+  gap: 1rem;
+}
+.logo-text {
+  font-size: 1.5rem;
+}
+.header-nav {
+  gap: 1.25rem;
 }
 
-/* ===== Desktop (≥1366px) ===== */
-@media (min-width: 1366px) {
-  .wrapper {
-    max-width: 1366px;
-  }
+.hero-overlay-text {
+  left: 2rem;
+  bottom: 2rem;
+}
+.hero-overlay-text h2 {
+  font-size: 2rem;
+}
+.hero-overlay-text p {
+  font-size: 1.1rem;
+}
 
-  .models-grid {
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    justify-content: center;
-    gap: 2rem;
-    padding: 0 2rem 3rem;
-  }
+.section-title {
+  font-size: 1.8rem;
+  margin: 2.5rem 0 1.25rem;
+}
 
-  .hero-overlay-text h2 {
-    font-size: 2.6rem;
-  }
-  .hero-overlay-text p {
-    font-size: 1.2rem;
-  }
-  .section-title {
-    font-size: 2.1rem;
-    margin: 3rem 0 1.5rem;
-  }
-  .model-card {
-    padding: 1.5rem;
-  }
+.models-grid {
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem 3rem;
+}
+.model-card {
+  padding: 1.25rem;
+}
+
+.models-grid {
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 2rem 3rem;
+}
+
+.hero-overlay-text h2 {
+  font-size: 2.6rem;
+}
+.hero-overlay-text p {
+  font-size: 1.2rem;
+}
+.section-title {
+  font-size: 2.1rem;
+  margin: 3rem 0 1.5rem;
+}
+.model-card {
+  padding: 1.5rem;
 }
 
 /* ===== Карусель ===== */
@@ -776,7 +765,9 @@ html[data-theme="dark"] .close-menu {
   border-radius: 16px;
   scroll-snap-align: start;
   cursor: pointer;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
 .gallery-row img:hover {
